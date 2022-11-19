@@ -1,0 +1,352 @@
+.HomePage {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.HomePage-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    min-width: 450px;
+    overflow-y: auto;
+    background-image: linear-gradient(black, rgb(10,10,10));
+}
+
+.Account-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    margin-top: 2rem;
+}
+
+.Account-wrapper .Account-balance-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 3rem;
+    background-color: white;
+    border-radius: 1rem;
+}
+
+.Account-wrapper .Account-balance-wrapper .Account-balance-symbol {
+    color: black;
+    font-size: 4rem;
+    font-weight: 500;
+    margin-right: .5rem;
+}
+
+.Account-wrapper .Account-balance-wrapper .Account-balance-value {
+    color: black;
+    font-size: 4rem;
+    font-weight: 700;
+}
+
+.Account-options {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: .5rem;
+}
+
+.Account-options .Account-option-button{
+    position: relative;
+    border: none;
+    outline: none;
+    background-color: white;
+    color: black;
+    padding: 1rem 1.5rem;
+    margin-bottom: 1rem;
+    border-radius: .8rem;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.Account-options .Account-option-button::after{
+    content: "";
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: .8rem;
+    border: 1px solid white;
+    position: absolute;
+    top: 0.2rem;
+    left: 0.2rem;
+}
+
+.Account-options .Account-option-button:hover{
+    background-color: black;
+    color: white;
+    border: 1px solid white;
+    margin-bottom: .9rem;
+    top: 0.2rem;
+    left: 0.2rem;
+}
+
+.Account-options .Account-option-button:hover::after{
+    border: none;
+    z-index: -100;
+}
+
+.Transactions-wrapper{
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    margin-top: 2rem;
+}
+
+.Transactions-bar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    position: relative;
+}
+
+.Transactions-bar-options-title:nth-child(1){
+    position: absolute;
+    top: .2rem;
+    left: .4rem;
+    font-size: .8rem;
+    font-weight: 700;
+    color: rgb(80,80,80);
+}
+
+.Transactions-bar-options-title:nth-child(2){
+    position: absolute;
+    top: .2rem;
+    left: 16.1rem;
+    font-size: .8rem;
+    font-weight: 700;
+    color: rgb(80,80,80);
+}
+
+#transactions-date-options {
+    flex: 4;
+    margin-right: .5rem;
+}
+
+#transactions-type-options {
+    flex: 3;
+    margin-left: .5rem;
+}
+
+.Transactions-bar select{
+    height: 3.5rem;
+    border: none;
+    outline: none;
+    border-radius: .5rem;
+    padding: .5rem .1rem 0 .1rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: black;
+    cursor: pointer;
+}
+
+.Transactions-bar select option {
+    font-size: 1rem;
+    color: black;
+    font-weight: 600;
+}
+
+.Transactions-bar select:focus{
+    outline: none;
+}
+
+.Transactions-table{
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: white;
+    padding: .5rem;
+    margin-top: 1rem;
+    border-radius: 1rem;
+}
+
+.Transaction{
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    width: 100%;
+    margin: .5rem 0;
+}
+
+.Transaction * {
+    font-family: Comfortaa;
+}
+
+.Transaction-username{
+    flex: 3;
+    font-size: 1.1rem;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.Transaction-infos{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    flex: 1;
+}
+
+.Transaction-date{
+    flex: 1;
+    font-size: .9rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.Transaction-value{
+    flex: 1;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.Transaction[data-type="cash-in"] .Transaction-value{
+    color: green;
+}
+
+.Transaction[data-type="cash-out"] .Transaction-value{
+    color: red;
+}
+
+.Hidden {
+    display: none;
+}
+
+.MakeTransfer-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 400px;
+    height: 450px;
+    padding: 1rem;
+    background-color: white;
+}
+
+.Hide-button-container {
+    width: 100%;
+}
+
+.Hide-button-container .Hide-button {
+    float: right;
+    width: 1.5rem;
+    height: 1.5rem;
+    color: black;
+    cursor: pointer;
+}
+
+.Hide-button-container .Hide-button:hover {
+    opacity: 0.7;
+}
+
+.Your-balance-container {
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+.Your-balance-container .Your-balance {
+    float: left;
+}
+
+.Styled-input{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    position: relative;
+    width: 100%;
+}
+
+.Styled-input input{
+    font-size: 1rem;
+    width: 100%;
+    padding: 1.5rem .5rem .5rem .5rem;
+    border: 1px solid black;
+    border-radius: 0.2rem;
+    margin-bottom: .5rem;
+}
+
+.Styled-input span{
+    font-size: 1rem;
+    color: black;
+    position: absolute;
+    left: .5rem;
+    top: 1rem;
+    pointer-events: none;
+    transition: .2s;
+}
+
+.Styled-input  p{
+    display: none;
+    margin: 0 0 1rem 0;
+    font-size: .9rem;
+    color: red;
+}
+
+.Styled-input input:focus , .Styled-input input:valid{
+        outline: 1px solid rgb(29, 155, 240);
+        border: 1px solid rgb(29, 155, 240);
+}
+    
+.Styled-input input:focus + span, .Styled-input input:valid + span{
+        font-size: .8rem;
+        color: rgb(29, 155, 240);
+        top: 0.2rem;
+}
+
+.Styled-input input:invalid[wasFocused="true"]{
+        outline: 1px solid red;
+        border: 1px solid red;
+}
+
+.Styled-input  input:invalid[wasFocused="true"] + span{
+        font-size: .8rem;
+        color: red;
+        top: .2rem;
+}
+
+input:invalid[wasFocused="true"] ~ p {
+    display: block;
+}
+
+.TransferButton {
+    border: none;
+    border-radius: .5rem;
+    outline: none;
+    padding: 1rem;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 700;
+    background-color: black;
+    margin-top: 1rem;
+    transition: all .2s;
+    cursor: pointer;
+}
+
+.TransferButton:hover {
+    opacity: 0.9;
+}
+
+.TransferButton:disabled {
+    cursor: initial;
+    opacity: 0.5;
+}
+
+.Server-response{
+    margin-top: 1rem;
+    color: black;
+}

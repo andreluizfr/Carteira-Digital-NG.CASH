@@ -1,0 +1,73 @@
+.LoginPage {
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    min-width: 420px;
+}
+
+.LoginPage .Floating-container .Background {
+    background-color: transparent;
+    backdrop-filter: none;
+}
+
+.Login-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 400px;
+    height: 450px;
+    padding: 1rem;
+    background-color: white;
+}
+
+.Login-container-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+}
+
+.LoginButton {
+    border: none;
+    border-radius: .5rem;
+    outline: none;
+    padding: 1rem;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 700;
+    background-color: black;
+    margin-top: 2rem;
+    transition: all .2s;
+    cursor: pointer;
+}
+
+.LoginButton:hover {
+    opacity: 0.9;
+}
+
+.LoginButton:disabled {
+    cursor: initial;
+    opacity: 0.5;
+}
+
+.SignupLink {
+    margin-top: 1rem;
+    color: black;
+    text-decoration: none;
+}
+
+.SignupLink:visited {
+    color: black
+}
+
+.SignupLink::after {
+    content: "";
+    display: block;
+    width: 0;
+    border-bottom: 1px solid black;
+    transition: all .2s;
+}
+
+.SignupLink:hover::after {
+    width: 100%;
+}

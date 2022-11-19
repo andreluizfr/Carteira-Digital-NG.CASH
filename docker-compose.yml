@@ -1,0 +1,31 @@
+version: "4.14.0"
+services:
+  server:
+    image: server:v1.0
+    build: ./server
+    ports:
+      - 5353:5353
+    depends_on:
+      - database
+
+  web-app:
+    image: web-app:v1.0
+    build: ./web-app
+    ports:
+      - 3000:3000
+    depends_on:
+      - server
+
+  database:
+    image: postgres:15.0
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: NgCash
+    ports:
+      - 5432:5432
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
+volumes:
+  db-data:

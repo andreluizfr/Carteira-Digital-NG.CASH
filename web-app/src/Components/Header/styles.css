@@ -1,0 +1,71 @@
+
+.Header {
+    position: sticky;
+    top: 0;
+    height: 5rem;
+    width: 100%;
+    min-width: 450px;
+    z-index: 9999999999;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: black;
+}
+
+.Header .Header-icon{
+    width: 6rem;
+    height: 5rem;
+    margin-left: 2rem;
+    cursor: pointer;
+}
+
+.Header .Header-icon:hover{
+    filter: opacity(0.7);
+}
+
+.Header .Header-username{
+    color: white;
+    font-size: 1.5rem;
+}
+
+.Header .Header-logout{
+    font-size: 1.2rem;
+    color: white;
+    margin-right: 6rem;
+    cursor: pointer;
+}
+
+.Header .Header-logout::after{
+    content: "";
+    display: block;
+    width: 0;
+    border-bottom: 1px solid white;
+    transition: all .2s;
+}
+
+.Header .Header-logout:hover::after{
+    width: 100%;
+}
+
+.Login-signup-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 15rem;
+    margin-right: 2rem;
+}
+
+.Login-signup-container .Button{
+    outline: none;
+    background-color: black;
+    border: 1px solid white;
+    border-radius: 1.5rem;
+    padding: 1rem;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.Login-signup-container .Button:hover{
+    opacity: 0.7;
+}

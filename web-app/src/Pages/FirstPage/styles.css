@@ -1,0 +1,91 @@
+.FirstPage{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    min-width: 450px;
+    overflow-x: hidden;
+}
+
+.FirstPage-header{
+    position: sticky;
+    top: 0;
+    background-color: black;
+    height: 5rem;
+    width: 100vw;
+    z-index: 99999;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.FirstPage-header-icon{
+    width: 6rem;
+    height: 5rem;
+    margin-left: 2rem;
+    cursor: pointer;
+}
+
+.Login-signup-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 15rem;
+    margin-right: 2rem;
+}
+
+.Login-signup-container .Button{
+    outline: none;
+    background-color: black;
+    border: 1px solid white;
+    border-radius: 1.5rem;
+    padding: 1rem;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.Login-signup-container .Button:hover{
+    opacity: 0.7;
+}
+
+.FirstPage .First-section{
+    width: 100vw;
+    height: 100vh;
+    padding: 0 2rem;
+    background-color: white;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.First-section .First-column{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    min-width: 450px;
+}
+
+.First-section .First-column .Title{
+    font-size: 4rem;
+    font-weight: 700;
+}
+
+.First-section .First-column .NoWrap{
+    word-wrap: break-word;
+}
+
+.First-section .Second-column{
+    width: 32rem;
+    height: 34rem;
+}
+
+@media(max-width: 450px){
+    .FirstPage{
+        overflow-x: visible;
+    }
+}

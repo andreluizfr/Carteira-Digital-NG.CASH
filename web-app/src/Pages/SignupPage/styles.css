@@ -1,0 +1,73 @@
+.SignupPage {
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    min-width: 420px;
+}
+
+.SignupPage .Floating-container .Background {
+    background-color: transparent;
+    backdrop-filter: none;
+}
+
+.Signup-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 400px;
+    height: 450px;
+    padding: 1rem;
+    background-color: white;
+}
+
+.Signup-container-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+}
+
+.SignupButton {
+    border: none;
+    border-radius: .5rem;
+    outline: none;
+    padding: 1rem;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 700;
+    background-color: black;
+    margin-top: 2rem;
+    transition: all .2s;
+    cursor: pointer;
+}
+
+.SignupButton:hover {
+    opacity: 0.9;
+}
+
+.SignupButton:disabled {
+    cursor: initial;
+    opacity: 0.5;
+}
+
+.LoginLink {
+    margin-top: 1rem;
+    color: black;
+    text-decoration: none;
+}
+
+.LoginLink:visited {
+    color: black
+}
+
+.LoginLink::after {
+    content: "";
+    display: block;
+    width: 0;
+    border-bottom: 1px solid black;
+    transition: all .2s;
+}
+
+.LoginLink:hover::after {
+    width: 100%;
+}
