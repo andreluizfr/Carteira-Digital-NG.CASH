@@ -65,6 +65,11 @@ export default function SignupPage  () : JSX.Element {
             const el = document.getElementsByClassName("Server-response");
             el[0].classList.remove("Hidden");
 
+            if(response.data.accessToken){
+                localStorage.setItem('x-access-token', response.data.accessToken);
+                window.location.reload();
+            }
+
         }).catch(error=>{
             console.error(error);
         });

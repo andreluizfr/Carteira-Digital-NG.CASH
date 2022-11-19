@@ -64,10 +64,8 @@ export default function LoginPage  () : JSX.Element {
             el[0].classList.remove("Hidden");
 
             if(response.data.accessToken){
-
                 localStorage.setItem("x-access-token", response.data.accessToken);
-                window.location.href = "http://localhost:3000/";
-
+                window.location.reload();
             }
 
         }).catch(error=>{
@@ -96,7 +94,6 @@ export default function LoginPage  () : JSX.Element {
                                 onBlur={handleBlur}
                             />
                             <span>Nome de usuário</span>
-                            <p>Digite seu nome de usuário.</p>
                         </div>
 
                         <div className='Styled-input Password'>
@@ -107,7 +104,6 @@ export default function LoginPage  () : JSX.Element {
                                 onBlur={handleBlur}
                             />
                             <span>Senha</span>
-                            <p>Digite sua senha.</p>
                         </div>
 
                         <button 

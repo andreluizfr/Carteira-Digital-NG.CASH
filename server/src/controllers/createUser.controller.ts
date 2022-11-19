@@ -11,7 +11,7 @@ export default new class CreateUserController {
 
         try {
 
-            const {createdUser, createdAccount} = await createUserService.execute({
+            const {createdUser, createdAccount, accessToken} = await createUserService.execute({
                 username: req.body.username, 
                 password: req.body.password
             });
@@ -21,7 +21,8 @@ export default new class CreateUserController {
             console.log("\n");
 
             return res.status(201).send({
-                message: 'Registro realizado com sucesso.'
+                message: 'Registro realizado com sucesso.',
+                accessToken: accessToken
             });
 
         } catch (err: unknown) {

@@ -2,6 +2,7 @@ import User from "../entities/User";
 import Account from "../entities/Account";
 import IUsersRepository from "../repository/IUsersRepository";
 import IAccountsRepository from "../repository/IAccountsRepository";
+import { createAccessToken } from "../auth";
 
 interface ICreateUserRequestDTO{
     username: string,
@@ -48,7 +49,11 @@ export default class CreateUserService{
                 const newUser = new User(user);
                 const createdUser = await this.usersRepository.createUser(newUser);
 
-                if(createdUser) return {createdUser: createdUser, createdAccount: createdAccount};
+                if(createdUser){
+
+                    const accessToken = createAccessToken(createdUser.username);
+                    return {createdUser: createdUser, createdAccount: createdAccount, accessToken: accessToken};
+                }
 
                 else {
                     //se usuário não foi criado, deletar conta que foi criada

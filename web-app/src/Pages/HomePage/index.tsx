@@ -149,6 +149,10 @@ export default function HomePage ({user, setUser}:IHomePageProps) : JSX.Element 
                 setServerResponse(response.data.message);
                 const el = document.getElementsByClassName("Server-response");
                 el[0].classList.remove("Hidden");
+
+                setTimeout(()=>{
+                    window.location.reload();
+                }, 1000);
                 
             }).catch(error=>{
                 console.error(error);
