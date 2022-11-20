@@ -10,10 +10,11 @@ export default new class GetTransactionsController {
     async handle (req: Request, res: Response): Promise<Response> {
 
         const getTransactionsService = new GetTransactionsService(transactionsRepository, accountsRepository, usersRepository);
+        const { dateFilter, typeFilter } = req.query;
 
         try {
 
-            const transactions = await getTransactionsService.execute(req.body.username, req.body.dateFilter, req.body.typeFilter);
+            const transactions = await getTransactionsService.execute(req.body.username, dateFilter?.toString(), typeFilter?.toString());
 
             console.log("Transações solicitadas por", req.body.username);
             console.log(transactions);

@@ -8,11 +8,11 @@ export default class Transaction{
     @PrimaryColumn()
     public readonly id!: string;
 
-    //para facilitar no frontend
+    //coluna adicionada para facilitar no tabela de transações frontend
     @Column({nullable: false})
     public debitedUsername!: string;
 
-    //para facilitar no frontend
+    //coluna adicionada para facilitar no tabela de transações frontend
     @Column({nullable: false})
     public creditedUsername!: string;
     

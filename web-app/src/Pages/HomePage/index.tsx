@@ -65,11 +65,7 @@ export default function HomePage ({user, setUser}:IHomePageProps) : JSX.Element 
 
         if(accessToken){
 
-            axios.post(apiURL+"/account/getTransactions",
-                {
-                    dateFilter: dateFilter,
-                    typeFilter: typeFilter
-                },
+            axios.get(apiURL+"/account/getTransactions?dateFilter="+dateFilter+"&&typeFilter="+typeFilter,
                 {
                     headers: { Authorization: `Bearer ${accessToken}` }
                 },

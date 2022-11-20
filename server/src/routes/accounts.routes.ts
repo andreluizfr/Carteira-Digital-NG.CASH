@@ -14,7 +14,7 @@ accountRouter.put('/transfer', authenticate, (req: Request, res: Response) => {
     return transferController.handle(req, res);
 });
 
-accountRouter.post('/getTransactions', authenticate, (req: Request, res: Response) => {
+accountRouter.get('/getTransactions', authenticate, (req: Request, res: Response) => {
     return getTransactionsController.handle(req, res);
 });
 

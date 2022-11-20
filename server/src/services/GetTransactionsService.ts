@@ -10,7 +10,7 @@ export default class GetTransactionsService{
                 private accountsRepository: IAccountsRepository,
                 private usersRepository: IUsersRepository){}
 
-    async execute(username: string, dateFilter: string, typeFilter:string) {
+    async execute(username: string, dateFilter: string | undefined, typeFilter: string | undefined) {
 
         const user = await this.usersRepository.findByUsername(username);
 
@@ -23,8 +23,12 @@ export default class GetTransactionsService{
                 const transactions = await this.transactionsRepository.findByAccountId(account.id);
 
                 if(transactions){
-                    const filteredTransactions = filterTransactions(transactions, dateFilter, typeFilter, username);
-                    return filteredTransactions;
+
+                    if(dateFilter && typeFilter){
+                        const filteredTransactions = filterTransactions(transactions, dateFilter, typeFilter, username);
+                        return filteredTransactions;
+                    } else return transactions;
+                
                 }
 
                 else throw new Error("Erro ao buscar transações.");

@@ -109,7 +109,7 @@ export default function SignupPage  () : JSX.Element {
                                 onBlur={handleBlur}
                             />
                             <span>Senha</span>
-                            <p>Precisa ter pelo menos 8 caracteres, uma letra maiúscula e um número.</p>
+                            <p>Precisa ter pelo menos 8 caracteres, uma letra minúscula, uma letra maiúscula e um número.</p>
                         </div>
 
                         <button 
