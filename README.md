@@ -22,7 +22,7 @@
 
 ### Para auxiliar no desenvolvimento
 1. Docker (containerização da aplicação)
-2. Postman ()
+2. Postman (Para realizar testes à API)
 3. Git (Versionamento da aplicação)
 
 ## Entidades
