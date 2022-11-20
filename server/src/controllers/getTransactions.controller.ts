@@ -13,9 +13,10 @@ export default new class GetTransactionsController {
 
         try {
 
-            const transactions = await getTransactionsService.execute(req.body.username);
+            const transactions = await getTransactionsService.execute(req.body.username, req.body.dateFilter, req.body.typeFilter);
 
             console.log("Transações solicitadas por", req.body.username);
+            console.log(transactions);
             console.log("\n");
 
             return res.status(200).send({

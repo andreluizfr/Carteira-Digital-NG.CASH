@@ -35,9 +35,10 @@ export default function HomePage ({user, setUser}:IHomePageProps) : JSX.Element 
     const accessToken = localStorage.getItem('x-access-token');
 
     const [account, setAccount] = useState<IAccount | null>(null);
+
     const [transactions, setTransactions] = useState<ITransaction[] | null>(null);
-    const [filteredTransactions, setFilteredTransactions] = useState<ITransaction[] | null>(null);
-    const [query, setQuery] = useState(["0", "0"]);
+    const [dateFilter, setDateFilter] = useState("0");
+    const [typeFilter, setTypeFilter] = useState("0");
 
     const [username, setUsername] = useState("");
     const [amount, setAmount] = useState(0);
@@ -64,11 +65,19 @@ export default function HomePage ({user, setUser}:IHomePageProps) : JSX.Element 
 
         if(accessToken){
 
-            axios.get(apiURL+"/account/getTransactions", {headers: { Authorization: `Bearer ${accessToken}` }}).then(response=>{
+            axios.post(apiURL+"/account/getTransactions",
+                {
+                    dateFilter: dateFilter,
+                    typeFilter: typeFilter
+                },
+                {
+                    headers: { Authorization: `Bearer ${accessToken}` }
+                },
+            ).then(response=>{
 
 				console.log(response.data.message);
 				setTransactions(response.data.transactions);
-                setFilteredTransactions(response.data.transactions);
+                console.log(response.data.transactions);
 				
 			}).catch(error=>{
 				console.error(error);
@@ -76,12 +85,25 @@ export default function HomePage ({user, setUser}:IHomePageProps) : JSX.Element 
 
         }
 
-    }, [accessToken]);
+    }, [accessToken, dateFilter, typeFilter]);
 
     useEffect(()=>{
         fetchAccount();
+    }, [fetchAccount]);
+
+    useEffect(()=>{
         fetchTransactions();
-    }, [fetchAccount, fetchTransactions]);
+    }, [fetchTransactions]);
+
+    function filterTransactionsByDate (event: React.ChangeEvent<HTMLSelectElement>) {
+        const value = event.target.value;
+        setDateFilter(value);
+    }
+
+    function filterTransactionsByType (event: React.ChangeEvent<HTMLSelectElement>) {
+        const value = event.target.value;
+        setTypeFilter(value);
+    }
 
     function showMakeTransferContainer () {
         const els = document.getElementsByClassName("Floating-container");
@@ -129,22 +151,27 @@ export default function HomePage ({user, setUser}:IHomePageProps) : JSX.Element 
 
     }, [username, amount, account]);
 
+    useEffect(()=>{
+        enableTransferButton();
+    }, [enableTransferButton]);
+
     function makeTransfer (event: React.FormEvent<HTMLFormElement>) {
         
         event.preventDefault();
 
         if(username && amount){
 
-            axios.post(apiURL+"/account/transfer", 
-            {
-                debitedUsername: username,
-                value: amount
-            }, 
-            {
-                headers: { 
-                    Authorization: `Bearer ${accessToken}` 
+            axios.put(apiURL+"/account/transfer", 
+                {
+                    debitedUsername: username,
+                    value: amount
+                }, 
+                {
+                    headers: { 
+                        Authorization: `Bearer ${accessToken}` 
+                    }
                 }
-            }).then(response=>{
+            ).then(response=>{
 
                 setServerResponse(response.data.message);
                 const el = document.getElementsByClassName("Server-response");
@@ -162,83 +189,7 @@ export default function HomePage ({user, setUser}:IHomePageProps) : JSX.Element 
 
     }
 
-    useEffect(()=>{
-        enableTransferButton();
-    }, [enableTransferButton]);
-
-
-    function filterTransactionsByDate (event: React.ChangeEvent<HTMLSelectElement>) {
-        const value = event.target.value;
-        setQuery([value, query[1]]);
-    }
-
-    function filterTransactionsByType (event: React.ChangeEvent<HTMLSelectElement>) {
-        const value = event.target.value;
-        setQuery([query[0], value]);
-    }
-
-    useEffect(()=>{
-        
-        if(user && transactions){
-
-            const now = new Date();
-            const currentYear = now.getFullYear();
-            const currentMonth = now.getMonth();
-
-            const dateFiltered = [] as ITransaction[];
-
-            transactions?.forEach(transaction=>{
-
-                const transactionDate = new Date(transaction.createdAt);
-                const transactionYear = transactionDate.getFullYear();
-                const transactionMonth = transactionDate.getMonth();
-
-                if(query[0]==="0") //desde sempre
-                    dateFiltered.push(transaction);
-
-                else if(query[0]==="1"){ //a partir desse ano
-
-                    if(transactionYear===currentYear)
-                        dateFiltered.push(transaction);
-
-                }
-                else if(query[0]==="2"){ //a partir desse mes
-
-                    if(transactionMonth===currentMonth && transactionYear===currentYear)
-                        dateFiltered.push(transaction);
-
-                }
-
-            });
-
-            const typeFiltered = [] as ITransaction[];
-
-            dateFiltered?.forEach(transaction=>{
-
-                if(query[1]==="0") //qualquer tipo
-                    typeFiltered.push(transaction);
-
-                else if(query[1]==="1"){ //cash-out
-
-                    if(transaction.creditedUsername===user?.username)
-                        typeFiltered.push(transaction);
-
-                }
-                else if(query[1]==="2"){ //cash-in
-
-                    if(transaction.debitedUsername===user?.username)
-                        typeFiltered.push(transaction);
-
-                }
-
-            });
-
-            setFilteredTransactions(typeFiltered);
-
-        }
-
-    }, [query, transactions, user]);
-
+    
 
     return (
         <div className="HomePage">
@@ -285,10 +236,11 @@ export default function HomePage ({user, setUser}:IHomePageProps) : JSX.Element 
 
                     </div>
 
-                    {(filteredTransactions?.length&&user)?
+                    {(transactions?.length && user)?
                         <div className="Transactions-table">
                             {
-                                filteredTransactions.map((transaction, index) => {
+                                transactions.map((transaction, index) => {
+
                                     let type;
 
                                     if (user.username === transaction.creditedUsername)

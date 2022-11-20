@@ -12,7 +12,8 @@ export default new class GetUserController {
 
             const user = await getUserService.execute({username: req.body.username});
 
-            console.log("Usuário consultado:", user);
+            console.log("Informações do usuário solicitado por:", user.username);
+            console.log(user);
             console.log("\n");
 
             return res.status(200).send({

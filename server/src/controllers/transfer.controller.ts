@@ -11,18 +11,18 @@ export default new class GetBalanceController {
         const transferService = new TransferService(accountsRepository, usersRepository, transactionsRepository);
 
         try {
-            const creditUsername = req.body.username;
+            const creditedUsername = req.body.username;
             const debitedUsername = req.body.debitedUsername;
             const value = req.body.value;
 
             const { createdTransaction } = await transferService.execute({
-                creditedUsername: creditUsername,
+                creditedUsername: creditedUsername,
                 debitedUsername: debitedUsername,
                 value: value
             });
 
-            console.log("Operação de transferência de", creditUsername, "para", debitedUsername, "no valor de", value);
-            console.log("createdTransaction", createdTransaction);
+            console.log("Operação de transferência de", creditedUsername, "para", debitedUsername, "no valor de", value);
+            console.log(createdTransaction);
             console.log("\n");
 
             return res.status(201).send({

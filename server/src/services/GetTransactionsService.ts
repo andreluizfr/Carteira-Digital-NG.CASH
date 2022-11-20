@@ -1,6 +1,7 @@
 import ITransactionsRepository from "../repository/ITransactionsRepository";
 import IAccountsRepository from "../repository/IAccountsRepository";
 import IUsersRepository from "../repository/IUsersRepository";
+import { filterTransactions } from "../utils";
 
 export default class GetTransactionsService{
 
@@ -9,7 +10,7 @@ export default class GetTransactionsService{
                 private accountsRepository: IAccountsRepository,
                 private usersRepository: IUsersRepository){}
 
-    async execute(username: string) {
+    async execute(username: string, dateFilter: string, typeFilter:string) {
 
         const user = await this.usersRepository.findByUsername(username);
 
@@ -21,8 +22,10 @@ export default class GetTransactionsService{
 
                 const transactions = await this.transactionsRepository.findByAccountId(account.id);
 
-                if(transactions)
-                    return transactions;
+                if(transactions){
+                    const filteredTransactions = filterTransactions(transactions, dateFilter, typeFilter, username);
+                    return filteredTransactions;
+                }
 
                 else throw new Error("Erro ao buscar transações.");
 

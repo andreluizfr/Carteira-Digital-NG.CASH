@@ -15,7 +15,7 @@ export default new class GetUserController {
                 password: req.body.password
             });
 
-            console.log("Login feito por", req.body.username);
+            console.log("Login realizado por", req.body.username);
             console.log("Access Token:", accessToken);
             console.log("\n");
 

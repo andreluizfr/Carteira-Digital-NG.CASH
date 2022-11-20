@@ -10,11 +10,11 @@ accountRouter.get('/getAccount', authenticate, (req: Request, res: Response) => 
     return getAccountController.handle(req, res);
 });
 
-accountRouter.post('/transfer', authenticate, (req: Request, res: Response) => {
+accountRouter.put('/transfer', authenticate, (req: Request, res: Response) => {
     return transferController.handle(req, res);
 });
 
-accountRouter.get('/getTransactions', authenticate, (req: Request, res: Response) => {
+accountRouter.post('/getTransactions', authenticate, (req: Request, res: Response) => {
     return getTransactionsController.handle(req, res);
 });
 

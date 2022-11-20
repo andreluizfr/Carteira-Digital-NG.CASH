@@ -3,7 +3,7 @@ import GetAccountService from '../services/GetAccountService';
 import accountsRepository from '../repository/AccountsRepository';
 import usersRepository from '../repository/UsersRepository';
 
-export default new class GetBalanceController {
+export default new class GetAccountController {
 
     async handle (req: Request, res: Response): Promise<Response> {
 
@@ -13,8 +13,8 @@ export default new class GetBalanceController {
 
             const account = await getAccountService.execute({username: req.body.username});
 
-            console.log("Saldo solicitado por", req.body.username);
-            console.log("Conta:", account);
+            console.log("Informações da conta solicitadas por", req.body.username);
+            console.log(account);
             console.log("\n");
 
             return res.status(200).send({
