@@ -28,18 +28,18 @@
 ## Entidades
 ### User
 Possui relacionamento One-To-One com Account
-<img src="imagens/user-entity.png"/>
+<img src="/Imagens/user-entity.png"/>
 
 ### Account
 Apesar de estar em dois relacionamentos, o TypeORM não vê necessidade da declaração nessa entidade, pois já tem a declaração nas outras duas.
-<img src="imagens/account-entity.png"/>
+<img src="/Imagens/account-entity.png"/>
 
 ### Transaction 
 Possui relacionamento Many-To-One com Account
-<img src="imagens/transaction-entity.png"/>
+<img src="/Imagens/transaction-entity.png"/>
 
 ## Rotas
-As rotas foram definidas baseadas nos serviços pedidos feitas pela empresa
+As rotas foram definidas baseadas nos serviços pedidos pela empresa
 
 ### /user/createUser (post)
 Recebe um JSON no formato {username: string, password: string}. Se o username tiver pelo menos 3 caracteres, e o password possuir pelo menos 8 caracteres, uma letra maíuscula, uma letra minúscula e um número. Cadastrará o usuário no BD e retornará uma mensagem de sucesso e um token de acesso, caso contrário, retornará uma mensagem de erro.
@@ -60,13 +60,27 @@ Recebe um JSON no formato {debitedUsername: string, creditedUsername: string, va
 Recebe parâmetros por queries no url com padrão "getTransactions?dateFilter=0&&typeFilter=0". Se um token válido estiver presente no header da request, retornará uma lista contendo todas as transações filtradas, em forma de lista do tipo da entidade Transaction e uma mensagem de sucesso. Caso contrário, retornará apenas uma mensagem de erro.
 
 ## Imagens finais
-<img src="imagens/landing-page.png"/>
-<img src="imagens/signup-page-0.png"/>
-<img src="imagens/signup-page-1.png"/>
-<img src="imagens/signup-page-2.png"/>
-<img src="imagens/login-page.png"/>
-<img src="imagens/home-page.png"/>
-<img src="imagens/transfer-page.png"/>
+
+### Página inicial para usuários não logados
+<img src="/Imagens/landing-page.png"/>
+
+### Tela inicial de registro
+<img src="/Imagens/signup-page-0.png"/>
+
+### Tela de registro com campos inválidos
+<img src="/Imagens/signup-page-1.png"/>
+
+### Tela de registro com campos válidos
+<img src="/Imagens/signup-page-2.png"/>
+
+### Tela de login com campos válidos
+<img src="/Imagens/login-page.png"/>
+
+### Página inicial para usuário logado
+<img src="/Imagens/home-page.png"/>
+
+### Seção para realização das transferências
+<img src="/Imagens/transfer-page.png"/>
 
 ## Iniciando aplicação através do Docker
 
@@ -78,11 +92,12 @@ E em seguida:
 ```
 docker-compose up -d
 ```
-Para descer aplicação use:
+Para visualizar a aplicação web acesse http://localhost:3000/ .
+
+Quando quiser descer aplicação use:
 ```
 docker-compose down
 ```
-Para visualizar a aplicação web acesse http://localhost:3000/ .
 
 ## Iniciando aplicação para desenvolvimento
 
